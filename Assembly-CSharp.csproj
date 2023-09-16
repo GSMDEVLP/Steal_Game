@@ -58,9 +58,10 @@
   <ItemGroup>
     <Compile Include="Assets\AurynSky\Gems Ultimate Pack\Scripts\AnimationScript.cs" />
     <Compile Include="Assets\Scripts\StealScript.cs" />
-    <Compile Include="Assets\Scripts\TimeBar.cs" />
-    <Compile Include="Assets\Scripts\SpawnerNPS.cs" />
+    <Compile Include="Assets\Scripts\MenuUI.cs" />
     <Compile Include="Assets\Scripts\StuffScript.cs" />
+    <Compile Include="Assets\Scripts\SpawnerNPS.cs" />
+    <Compile Include="Assets\Scripts\GenerationStuff.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AurynSky\Gems Ultimate Pack\READ ME.txt" />

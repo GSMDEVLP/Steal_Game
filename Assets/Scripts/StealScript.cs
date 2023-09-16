@@ -8,17 +8,12 @@ public class StealScript : MonoBehaviour
     [SerializeField] private List<GameObject> _posSpawns;
     private int _countModif = 3;
     private MeshRenderer _rendererObj;
+    public int _point = 0;
 
 
     private List<Vector3> _spawnPoints = new List<Vector3>(); // Список точек спавна
     private Color[] _availableColors = { Color.blue, Color.red, Color.black };
 
-    private enum ModificationStuff
-    {
-        Steal,
-        Unsteal,
-        TimeSteal
-    }
 
     void Start()
     {        
@@ -35,10 +30,9 @@ public class StealScript : MonoBehaviour
         {
             int randomIndex = Random.Range(0, _spawnPoints.Count); // Выбираем случайную точку спавна
             Vector3 spawnPoint = _spawnPoints[randomIndex];
-            int randomModif = Random.Range(0, _countModif);
-
-            // Создаем копию материала
-            Renderer rendererObj = obj.GetComponent<Renderer>();
+            //int randomModif = Random.Range(0, _countModif);
+/*            // Создаем копию материала
+            MeshRenderer rendererObj = obj.GetComponent<MeshRenderer>();
             Material materialCopy = new Material(rendererObj.sharedMaterial);
 
             Color color = Color.white; // Цвет по умолчанию
@@ -61,7 +55,7 @@ public class StealScript : MonoBehaviour
             materialCopy.color = color;
 
             // Присваиваем копию материала инстансу объекта
-            rendererObj.material = materialCopy;
+            obj.GetComponent<MeshRenderer>().material = materialCopy;*/
 
             // Создаем инстанс объекта с измененным материалом
             Instantiate(obj, spawnPoint, Quaternion.identity);
@@ -83,6 +77,7 @@ public class StealScript : MonoBehaviour
                 {
                     // Удаляем объект с указанным тегом
                     Destroy(hit.collider.gameObject);
+                    _point++;
                 }
                 else
                 {

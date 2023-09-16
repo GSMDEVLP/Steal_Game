@@ -348,10 +348,11 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
 "Assets/AurynSky/Gems Ultimate Pack/Scripts/AnimationScript.cs"
+"Assets/Scripts/GenerationStuff.cs"
+"Assets/Scripts/MenuUI.cs"
 "Assets/Scripts/SpawnerNPS.cs"
 "Assets/Scripts/StealScript.cs"
 "Assets/Scripts/StuffScript.cs"
-"Assets/Scripts/TimeBar.cs"
 -langversion:9.0
 
 /deterministic
