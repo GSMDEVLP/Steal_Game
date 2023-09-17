@@ -7,23 +7,20 @@ public class SpawnerNPS : MonoBehaviour
     [SerializeField] private GameObject _playerPrefab; // Префаб игрока
 
     private List<Vector3> _spawnPoints = new List<Vector3>(); // Список точек спавна
-
-    private void Start()
+    private int numberOfPlayersToSpawn = 3; // Измените на нужное количество игроков
+    private void PlayerPosition()
     {
         // Перебираем дочерние объекты территории спавна и добавляем их позиции в список
         foreach (Transform child in _spawnArea)
         {
             _spawnPoints.Add(child.position);
-        }
-
-        SpawnPlayers();
+        }        
     }
 
-    private void SpawnPlayers()
+    public void SpawnNPCPlayers()
     {
-        // Здесь вы можете реализовать спавн игроков на случайных позициях
-        // Например, создайте цикл для спавна определенного количества игроков
-        int numberOfPlayersToSpawn = 3; // Измените на нужное количество игроков
+        PlayerPosition();        
+        
         for (int i = 0; i < numberOfPlayersToSpawn; i++)
         {
             int randomIndex = Random.Range(0, _spawnPoints.Count); // Выбираем случайную точку спавна
@@ -32,4 +29,5 @@ public class SpawnerNPS : MonoBehaviour
             _spawnPoints.RemoveAt(randomIndex); // Удаляем использованную точку спавна из списка
         }
     }
+
 }
