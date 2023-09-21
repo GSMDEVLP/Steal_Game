@@ -22,5 +22,12 @@ public class MenuUI : MonoBehaviour
         {
             _endPanel.SetActive(true);
         }
+        EndGame();
+    }
+
+    public void EndGame()
+    {
+        if (GameManager.EndGame)
+            _endPanel.SetActive(true);
     }
 }

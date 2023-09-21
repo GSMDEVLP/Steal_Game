@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33000013317686294}
   - component: {fileID: 23000010834650084}
   - component: {fileID: -3333163992742292908}
-  - component: {fileID: -5859250102550574655}
+  - component: {fileID: 6360318788327012111}
   m_Layer: 0
   m_Name: Cubie
   m_TagString: Stuff
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9999998, y: 1.0000001, z: 2.0000002}
   m_Center: {x: 0, y: 0, z: -0.0000004768373}
---- !u!114 &-5859250102550574655
+--- !u!114 &6360318788327012111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,6 +107,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013765287000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df6a7dce46f5e4c4e8e8fc12c074bcd2, type: 3}
+  m_Script: {fileID: 11500000, guid: f55f1361d9e9e3e4ea7dad605c04d34c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

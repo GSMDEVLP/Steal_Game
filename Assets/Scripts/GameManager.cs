@@ -1,16 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     private int _point = 1;
-
+    public static bool EndGame = false;
     [Header("SpawnNPC and Stuff")]
     public SpawnerNPS SpawnNPC;
     private SpawnerStuff[] _npc;
-
+    private AddMaterialsAndModifScript _addModif;
+    
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     {
         _npc = FindObjectsOfType<SpawnerStuff>();
         DestroyOnClick();
-        AddTime();
+        RestartLevelAndAddTime();
     }
 
     private void DestroyOnClick()
@@ -36,28 +36,51 @@ public class GameManager : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Stuff"))
                 {
-                    ScoreScript.ScoreHit(_point);
+                    _addModif = hit.collider.GetComponent<AddMaterialsAndModifScript>();
+                    CheckModif(_addModif.modif);
                     Destroy(hit.collider.gameObject);
-                }
-                else
-                {
-                    Debug.Log("SASAT");
-                }
+                }                    
             }
         }
     }
 
-    private void AddTime()
+    private void RestartLevelAndAddTime()
     {
         GameObject stuffObject = GameObject.FindWithTag("Stuff");        
         if (stuffObject == null)
         {
             MenuUI._slider.value += 20f;
-            foreach (var obj in _npc)
-            {
-                Destroy(obj.gameObject);
-            }
-            SpawnNPC.SpawnNPCPlayers();
+            RestartLevel();
         }
+        else
+        {
+            AddMaterialsAndModifScript[] redStuff = FindObjectsOfType<AddMaterialsAndModifScript>();
+            bool allElementsHaveUnstealModif = redStuff.All(item => item.modif == AddMaterialsAndModifScript.StuffModif.Unsteal);
+            if (allElementsHaveUnstealModif)
+            {
+                foreach (var item in redStuff)
+                    Destroy(item.gameObject);
+                RestartLevel();
+            }
+        }
+    }
+
+    private void CheckModif(AddMaterialsAndModifScript.StuffModif modif)
+    {
+        if (modif == AddMaterialsAndModifScript.StuffModif.StealTime)
+            MenuUI._slider.value += 20f;
+        else if (modif == AddMaterialsAndModifScript.StuffModif.Unsteal)
+            EndGame = true;
+        else if(modif == AddMaterialsAndModifScript.StuffModif.Steal)
+            ScoreScript.ScoreHit(_point);
+    }
+
+    private void RestartLevel()
+    {
+        foreach (var obj in _npc)
+        {
+            Destroy(obj.gameObject);
+        }
+        SpawnNPC.SpawnNPCPlayers();
     }
 }

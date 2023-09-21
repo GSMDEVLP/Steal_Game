@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ public class SpawnerStuff : MonoBehaviour
     [SerializeField] private List<GameObject> _posSpawns;
     private List<Vector3> _spawnPoints = new List<Vector3>(); // Список точек спавна
 
-
+    private List<GameObject> _selectedObj = new List<GameObject>();
     private void Start()
     {
         StuffPosition();
@@ -24,15 +23,13 @@ public class SpawnerStuff : MonoBehaviour
 
     public void SpawnStuff()
     {
-        //StuffPosition();
-        foreach (GameObject obj in _objects)
+        foreach (Vector3 pos in _spawnPoints)
         {
-            int randomIndex = Random.Range(0, _spawnPoints.Count); // Выбираем случайную точку спавна
-            Vector3 spawnPoint = _spawnPoints[randomIndex];
-            Instantiate(obj, spawnPoint, Quaternion.identity);
-            _spawnPoints.RemoveAt(randomIndex); // Удаляем использованную точку спавна из списка
+            int randomObj = Random.Range(0, _objects.Count); // Выбираем случайный объект
+            GameObject obj = _objects[randomObj];
+            _selectedObj.Add(obj);
+            Instantiate(obj, pos, Quaternion.identity);
+            _objects.RemoveAt(randomObj); // Удаляем использованную точку спавна из списка
         }
     }
-
-
 }
