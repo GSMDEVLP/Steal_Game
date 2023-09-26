@@ -5,7 +5,7 @@ public class SpawnerStuff : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _objects;
     [SerializeField] private List<GameObject> _posSpawns;
-    private List<Vector3> _spawnPoints = new List<Vector3>(); // Список точек спавна
+    private List<GameObject> _spawnPoints = new List<GameObject>();
 
     private List<GameObject> _selectedObj = new List<GameObject>();
     private void Start()
@@ -17,19 +17,19 @@ public class SpawnerStuff : MonoBehaviour
     {
         foreach (GameObject child in _posSpawns)
         {
-            _spawnPoints.Add(child.transform.position);
+            _spawnPoints.Add(child);
         }
     }
 
     public void SpawnStuff()
     {
-        foreach (Vector3 pos in _spawnPoints)
+        foreach (GameObject pos in _spawnPoints)
         {
-            int randomObj = Random.Range(0, _objects.Count); // Выбираем случайный объект
+            int randomObj = Random.Range(0, _objects.Count);
             GameObject obj = _objects[randomObj];
             _selectedObj.Add(obj);
-            Instantiate(obj, pos, Quaternion.identity);
-            _objects.RemoveAt(randomObj); // Удаляем использованную точку спавна из списка
+            Instantiate(obj, pos.transform.position, Quaternion.identity, pos.transform);
+            _objects.RemoveAt(randomObj); 
         }
     }
 }

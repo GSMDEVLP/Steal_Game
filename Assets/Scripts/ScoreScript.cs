@@ -9,12 +9,12 @@ public class ScoreScript : MonoBehaviour
     void Start()
     {
         _scoreText = GetComponent<Text>();
-        _scoreText.text = _score.ToString();
+        _scoreText.text = "—чет: " + _score.ToString();
     }
 
     public static void ScoreHit(int scorePerHit)
     {
         _score += scorePerHit;
-        _scoreText.text = _score.ToString();
+        _scoreText.text = "—чет: " + _score.ToString();
     }
 }

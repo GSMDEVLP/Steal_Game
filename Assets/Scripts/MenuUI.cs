@@ -7,7 +7,7 @@ public class MenuUI : MonoBehaviour
 {
     public static Slider _slider;
     [SerializeField] private GameObject _endPanel;
-    [SerializeField] private GameObject _playerPrefab; // Префаб игрока    
+    [SerializeField] private Text _timeText;
 
     private void Start()
     {
@@ -17,7 +17,13 @@ public class MenuUI : MonoBehaviour
 
     void Update()
     {
-        _slider.value -= 0.05f;
+        MenuGame();
+    }
+
+    private void MenuGame()
+    {
+        _slider.value -= Time.deltaTime;
+        _timeText.text = "Оставшееся время: " + Mathf.Round(_slider.value).ToString();
         if (_slider.value == 0)
         {
             _endPanel.SetActive(true);

@@ -5,12 +5,11 @@ using UnityEngine;
 public class AddMaterialsAndModifScript : MonoBehaviour
 {
     private int _countModif = 3;
-    /*private Renderer rendererObj;
-    private Color color;*/
     public StuffModif modif;
+    private Outline outlineComponent;
     void Start()
     {
-        //rendererObj = GetComponent<Renderer>();
+        outlineComponent = GetComponent<Outline>();
         SetColor();
     }
 
@@ -21,25 +20,25 @@ public class AddMaterialsAndModifScript : MonoBehaviour
         StealTime
     }
 
+
     private void SetColor()
     {
         int randomModif = Random.Range(0, _countModif);
         switch (randomModif)
         {
             case 0:
-                //color = Color.blue;
+                outlineComponent.OutlineColor = Color.green;
                 modif = StuffModif.Steal;
                 break;
             case 1:
-                //color = Color.red;
+                outlineComponent.OutlineColor = Color.red;
                 modif = StuffModif.Unsteal;
                 break;
             case 2:
-                //color = Color.green;
+                outlineComponent.OutlineColor = Color.blue;
                 modif = StuffModif.StealTime;
                 break;
         }
-        //rendererObj.material.color = color;
     }
 
     public StuffModif GetModif()
